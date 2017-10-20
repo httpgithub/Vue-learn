@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Uve 实例</title>
+    <script src="https://unpkg.com/vue"></script>
+</head>
+<body>
+<h1>Data-and-Methods</h1>
+
+When a Vue instance is created, it adds all the properties found in its data object to Vue’s reactivity system. When the
+values of those properties change, the view will “react”, updating to match the new values.
+<br/>
+当一个 Vue 实例被创建时，它向 Vue 的响应式系统中加入了其 data 对象中能找到的所有的属性。当这些属性的值发生改变时，视图将会产生“响应”，即匹配更新为新的值
+<script>
+    // 我们的数据对象
+    var data = {a: 1};
+
+    var vm = new Vue({
+        data: data
+    });
+
+    //// 他们引用相同的对象！
+    console.info(vm.a === data.a);//true
+
+    //// 设置属性也会影响到原始数据
+    vm.a = "2";
+    console.info(data.a);
+
+    // ... 反之亦然
+    data.a = 3;
+    console.info(vm.a);
+</script>
+
+<h2>Vue 实例暴露了一些有用的实例属性与方法。它们都有前缀 $，以便与用户定义的属性区分开来</h2>
+<script>
+    var data = {a: 1};
+    var vm = new Vue({
+        data: data
+    });
+    console.info(vm.$data === data);
+
+</script>
+</body>
+</html>

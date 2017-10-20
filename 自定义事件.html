@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>
+        https://github.com/WYseven/vue2-basic-demo/blob/master/vue-demo/components/13-%E5%8A%A8%E6%80%81%E7%BB%84%E4%BB%B6.html</title>
+    <script src="https://unpkg.com/vue"></script>
+
+</head>
+<body>
+<div id="counter-event-example">
+    <p>{{ total }}</p>
+    <button-counter v-on:increment="incrementTotal"></button-counter>
+    <button-counter v-on:increment="incrementTotal"></button-counter>
+</div>
+<script type="text/javascript">
+    Vue.component('button-counter', {
+        template: '<button v-on:click="incrementCounter">{{ counter }}</button>',
+        data: function () {
+            return {
+                counter: 0
+            }
+        },
+        methods: {
+            incrementCounter: function () {
+                this.counter += 1
+                this.$emit('increment')
+            }
+        },
+    })
+    new Vue({
+        el: '#counter-event-example',
+        data: {
+            total: 0
+        },
+        methods: {
+            incrementTotal: function () {
+                this.total += 1
+            }
+        }
+    })
+</script>
+
+<div id="app">
+    https://ycwdss.github.io/2017/05/15/vue%E7%BB%84%E4%BB%B6%E4%B9%8B%E9%97%B4%E9%80%9A%E4%BF%A1/
+    <child :msg="parentMsg" @listen-to-child-event="showMsgFromChild"></child>
+    <p>{{parentMsgFromChild}}</p>
+</div>
+<script>
+    Vue.component('child', {
+        props: ['msg'],
+        template: `
+        <div>
+        <h2>child子组件</h2>
+        <p>{{msg}}</p>
+        <button @click="sendMsgToParent">child按钮</button>
+        </div>
+      `,
+        methods: {
+            sendMsgToParent: function () {
+                this.$emit('listen-to-child-event', '这是child传给父组件的消息！！！')
+            }
+        }
+    });
+    new Vue({
+        el: "#app",
+        data: {
+            parentMsg: 'hello you are my child',
+            parentMsgFromChild: ""
+        },
+        methods: {
+            showMsgFromChild: function (msg) {
+                this.parentMsgFromChild = msg;
+            }
+        }
+    });
+</script>
+</body>
+</html>

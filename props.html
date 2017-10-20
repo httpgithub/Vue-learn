@@ -1,0 +1,47 @@
+<script src="https://unpkg.com/vue"></script>
+<h1>使用prop传递数据</h1>
+<div id="app">
+    <child :text="message"></child>
+</div>
+<script>
+    Vue.component('child', {
+        props: {
+            text: {
+                type: String
+            }
+        },
+        template: '<div>{{text}}</div>'
+    });
+    new Vue({
+        el: "#app",
+        data: {
+            message: 'hello'
+        }
+    });
+</script>
+
+
+<h1>动态prop</h1>
+<div id='p2'>
+    <input v-model="parentMse"/>
+    <childcomponent v-bind:text="parentMse">
+</div>
+
+<script>
+    Vue.component("childcomponent", {
+        props: {
+            text: {
+                type: String
+            }
+        },
+        template: '<div>动态{{text}}</div>'
+    });
+    new Vue({
+        el: '#p2',
+        data: function () {
+            return {
+                parentMse: ""<!--一定要声明-->
+            }
+        }
+    })
+</script>
