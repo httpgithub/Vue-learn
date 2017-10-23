@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://unpkg.com/vue"></script>
+</head>
+<body>
+<div id="app" :style="{ backgroundColor: `hsl(${x}, 80%, 50%)` }" @mousemove="xCoordinate">
+    <p>
+        <button @click="increment">+</button>
+        {{ counter }}
+        <button @click="decrement">-</button>
+    </p>
+    <p>Pixels across: {{ x }}</p>
+</div>
+<script>
+    new Vue({
+        el: "#app",
+        data: function () {
+            return {
+                counter: 0,
+                x: 0
+            }
+        },
+        methods: {
+            increment() {
+                this.counter++;
+            },
+            decrement() {
+                this.counter--;
+            },
+            xCoordinate(e) {
+                this.x = e.clientX;
+            }
+        }
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-bind="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://unpkg.com/vue"></script>
+</head>
+<body>
+<div id="app">
+    <ul>
+        <li is="individual-comment" v-for="comment in comments" v-bind:commentpost="comment">
+
+        </li>
+    </ul>
+    <input v-model="newComment"  v-on:keyup.enter="addComment" placeholder="添加评论"/>
+</div>
+</body>
+<script>
+    Vue.component('individual-comment', {
+        template: `<li> {{ commentpost }}`,
+        props: ['commentpost']
+    })
+    new Vue({
+        el: "#app",
+        data: {
+            newComment: '',
+            comments: ['Looks great Julianne!',
+                'I love the sea',
+                'Where are you at?']
+        },
+        methods: {
+            addComment() {
+                this.comments.push(this.newComment);
+                this.newComment = ''
+            }
+        }
+    })
+</script>
+</html>

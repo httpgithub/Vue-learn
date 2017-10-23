@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>事件处理</title>
+    <script src="https://unpkg.com/vue"></script>
+</head>
+<body>
+<div id="app">
+    <button @click="increment"></button>
+    <p>点击次数{{counter}}</p>
+</div>
+<script>
+    new Vue({
+        el: "#app",
+        data: function () {
+            return {
+                counter: 0
+            }
+        },
+        methods: {
+            increment() {
+                this.counter++;
+            }
+        }
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>动态绑定</title>
+    <script src="https://unpkg.com/vue"></script>
+</head>
+<body>
+<div id="app">
+    <textarea v-model="message"></textarea>
+    <p>{{message}}</p>
+</div>
+<script>
+    const app = new Vue({
+        el: "#app",
+        data: {
+            message: "init"
+        }
+    })
+</script>
+</body>
+</html>
